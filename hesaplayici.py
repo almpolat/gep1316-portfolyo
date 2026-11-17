@@ -25,8 +25,11 @@ indirimli_fiyat = fiyat * (1 - indirim_orani / 100)
 # Brüt satış: indirimli fiyat ile satılan kopya sayısını çarpıyoruz
 brut_satis = indirimli_fiyat * satis_adedi
 
-# Steam fiyatlarına KDV dahildir; KDV'yi ayırarak KDV hariç geliri buluyoruz
-kdv_haric = brut_satis * (1 - KDV_ORANI)
+# Steam fiyatlarına KDV dahildir; KDV'yi ayırmak için 1.20'ye bölüyoruz
+# DUZELTME (hata avı): Önceki satır brut_satis * (1 - KDV_ORANI) idi; KDV dahil
+# fiyattan %20 düşmek yanlıştır, çünkü KDV dahil fiyatın içindeki vergi payı
+# %16,67'dir. Doğrusu 1 + KDV_ORANI'ya (1.20) bölmektir.
+kdv_haric = brut_satis / (1 + KDV_ORANI)
 
 # Steam'in payını KDV hariç gelir üzerinden hesaplıyoruz
 steam_kesintisi = kdv_haric * STEAM_PAYI
