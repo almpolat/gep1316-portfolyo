@@ -12,11 +12,16 @@ dogum_yili = int(input("Doğum yılınız nedir? "))
 # Bilgisayarın saatinden içinde bulunduğumuz yılı alıyoruz (ör. 2026)
 bu_yil = date.today().year
 
-# Bu yıldan doğum yılını çıkararak yaşı hesaplıyoruz
-yas = bu_yil - dogum_yili
+# BENİM DEĞİŞİKLİĞİM: Doğum yılı bu yıldan büyükse (gelecekteyse) uyarı ver
+if dogum_yili > bu_yil:
+    # Gelecekteki bir yılda doğulamayacağı için yaş hesaplanmaz, uyarı yazılır
+    print("Uyarı: Doğum yılı gelecekte olamaz!")
+else:
+    # Bu yıldan doğum yılını çıkararak yaşı hesaplıyoruz
+    yas = bu_yil - dogum_yili
 
-# Kişiye özel karşılama mesajını ekrana yazdırıyoruz
-print(f"Merhaba {ad}! GEP1316 dersine hoş geldin.")
+    # Kişiye özel karşılama mesajını ekrana yazdırıyoruz
+    print(f"Merhaba {ad}! GEP1316 dersine hoş geldin.")
 
-# Hesaplanan yaşı ekrana yazdırıyoruz
-print(f"Bu yıl {yas} yaşına giriyorsun.")
+    # Hesaplanan yaşı ekrana yazdırıyoruz
+    print(f"Bu yıl {yas} yaşına giriyorsun.")
